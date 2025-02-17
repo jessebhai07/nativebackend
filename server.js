@@ -5,7 +5,6 @@ import multer from "multer";
 import cloudinary from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import cors from "cors";
-import { IncomingForm } from "formidable";
 
 dotenv.config();
 
@@ -135,21 +134,16 @@ app.get("/api/blogs", async (req, res) => {
 
 // API to fetch a single blog by blog_id
 app.get("/api/blogs/:blog_id", async (req, res) => {
-  console.log("Requested blog_id:", req.params.blog_id);  // Log the requested blog_id
   try {
     const blog = await Blog.findOne({ blog_id: req.params.blog_id });
     if (!blog) {
-      console.log("Blog not found");  // Log if no blog is found
       return res.status(404).json({ message: "Blog not found" });
     }
-    console.log("Blog found:", blog);  // Log the found blog data
     res.json(blog);
   } catch (error) {
-    console.error("Error fetching blog:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
+// Vercel requires an export of the handler
+export default app;
