@@ -5,6 +5,7 @@ import multer from "multer";
 import cloudinary from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import cors from "cors";
+import { IncomingForm } from "formidable";
 
 dotenv.config();
 
@@ -80,7 +81,7 @@ app.get("/", (req, res) => {
 });
 
 // API to Upload Image for Events
-app.post("/upload", upload.single("image"), async (req, res) => {
+app.post("/api/upload", upload.single("image"), async (req, res) => {
   try {
     const { date } = req.body;
     if (!date) {
@@ -108,7 +109,7 @@ app.get("/api/events", async (req, res) => {
 });
 
 // API to upload blog data
-app.post("/blogs", upload.single("blog_image"), async (req, res) => {
+app.post("/api/blogs", upload.single("blog_image"), async (req, res) => {
   const { blog_title, blog_description } = req.body;
   const blog_image = req.file.path;
 
@@ -151,3 +152,4 @@ app.get("/api/blogs/:blog_id", async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
