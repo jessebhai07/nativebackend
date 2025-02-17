@@ -72,7 +72,7 @@ const storage = new CloudinaryStorage({
     folder: "uploads",
     allowedFormats: ["jpg", "png", "jpeg"],
   },
-});
+}); 
 const upload = multer({ storage });
 
 app.get("/", (req, res) => {
