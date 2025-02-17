@@ -108,7 +108,7 @@ app.get("/api/events", async (req, res) => {
 });
 
 // API to upload blog data
-app.post("/api/blogs", upload.single("blog_image"), async (req, res) => {
+app.post("/blogs", upload.single("blog_image"), async (req, res) => {
   const { blog_title, blog_description } = req.body;
   const blog_image = req.file.path;
 
