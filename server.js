@@ -40,7 +40,7 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model("Blog", blogSchema);
 
-// Configure Multer for Cloudinary
+// Configure Multer  for Cloudinary
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
